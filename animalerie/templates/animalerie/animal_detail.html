@@ -1,0 +1,40 @@
+{% extends 'animalerie/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="page-header">
+    <h1>
+        <a href="/">{{ animal.id_animal }}</a>
+        <img class="rounded-circle" src="{{animal.photo}}" height="150">
+        <img src="{{lieu.photo}}" height="150">
+    </h1>
+    <form method="POST" class="post-form">{% csrf_token %}
+        <b> Changer : </b> {{ form.as_ul }}
+        <button type="submit" class="btn btn-outline-light">OK</button>
+        <a href="{% url 'animal_list' %}">Back</a>
+    </form>
+    {% if message != '' and message != 'OK'%}
+        <div class="alert alert-danger" role="alert">
+            {{message}}
+        </div>
+    {% endif %}
+</div>
+
+<div class="content container">
+    <div class="animal">
+        <ul>
+            <li>
+                <b>type : </b> {{animal.type}}
+            </li>
+            <li>
+                <b>race : </b> {{animal.race}}
+            </li>
+            <li>
+                <b>état : </b> {{animal.etat}}
+            <li>
+                <b>lieu : </b> {{lieu}}
+            </li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

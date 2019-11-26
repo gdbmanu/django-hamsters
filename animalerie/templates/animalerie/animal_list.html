@@ -1,0 +1,19 @@
+{% extends 'animalerie/base.html' %}
+{% load static %}
+{% block content %}
+<div class="page-header">
+    <h1><a href="/">Bienvenue à l'animalerie!</a></h1>
+</div>
+
+<table class="table table-striped">
+    <tbody>
+        {% for animal in animals %}
+        <tr>
+            <td><h2><a href="{% url 'animal_detail' id_animal=animal.id_animal %}">{{ animal.id_animal }}</a></h2></td>
+            <td>{{ animal.etat|linebreaksbr }}</td>
+            <td>{{ animal.lieu|linebreaksbr }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
